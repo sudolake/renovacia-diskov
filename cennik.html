@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cenník renovácie diskov | Car Spa</title>
+<meta name="description" content="Cenník renovácie a lakovania diskov za sadu 4 ks podľa priemeru R17 až R22, obrábané čelo a rovnanie diskov. Ceny s DPH aj bez DPH.">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="css/site.css">
+<style>
+body{padding-bottom:104px}
+
+/* page head */
+.pl-head{padding:clamp(48px,7vw,104px) 0 clamp(40px,5vw,72px)}
+.pl-head h1{font-size:clamp(56px,10vw,168px)}
+.pl-head .lead{margin-top:24px;max-width:46ch;font-size:clamp(18px,1.5vw,21px);color:var(--muted)}
+.facts{list-style:none;display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:36px}
+.facts li{display:flex;align-items:center;gap:10px;font-weight:600}
+.facts i{font-size:22px;color:var(--accent-ink)}
+/* desktop: compact head so the prices are visible without scrolling; mobile stays as is */
+@media (min-width:861px){
+  .pl-head{padding:40px 0 36px}
+  .pl-head .wrap{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:56px;align-items:end}
+  .pl-head h1{font-size:clamp(56px,6.4vw,104px)}
+  .pl-head .lead{margin:0 0 6px;max-width:52ch;font-size:18px}
+  .pl-head .facts{grid-column:1/-1;margin-top:24px}
+  #renovacia{padding-top:48px}
+  #renovacia .sizes{margin-top:32px}
+  .size-tile{min-height:clamp(170px,13vw,200px)}
+}
+
+/* blocks */
+.pl-block{padding:clamp(56px,7vw,104px) 0;border-top:1px solid var(--line)}
+.pl-block h2{font-size:clamp(34px,4.6vw,68px)}
+.pl-block .desc{margin-top:16px;max-width:56ch;color:var(--muted);font-size:clamp(17px,1.35vw,19px)}
+
+/* size tiles: ring grows with the diameter */
+.sizes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:40px}
+.size-tile{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:clamp(200px,20vw,260px);padding:clamp(20px,2vw,28px);border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);transition:border-color .3s,opacity .9s var(--ease),transform .6s var(--ease);transition-delay:0s}
+.size-tile:hover{border-color:var(--accent);transform:translateY(-2px)}
+.size-tile .ring{--d:calc((var(--r) - 12) * 18px);position:absolute;right:calc(var(--d) * -.28);top:calc(var(--d) * -.28);width:var(--d);height:var(--d);border-radius:50%;
+  border:10px solid color-mix(in srgb,var(--text) 7%,transparent);box-shadow:inset 0 0 0 18px var(--bg-2),inset 0 0 0 19px color-mix(in srgb,var(--text) 7%,transparent);transition:border-color .4s}
+.size-tile:hover .ring{border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.size-tile .size{position:relative;font-stretch:125%;font-weight:800;font-size:clamp(34px,3.6vw,52px);line-height:1;letter-spacing:-.02em}
+.amount{position:relative;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.amount .num{font-stretch:125%;font-weight:800;font-size:clamp(36px,3.8vw,56px);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.amount .unit{font-stretch:125%;font-weight:800;font-size:clamp(22px,2vw,30px)}
+.amount .vat-label{flex-basis:100%;font-size:14px;color:var(--muted)}
+
+.note{display:flex;gap:12px;align-items:flex-start;margin-top:24px;max-width:72ch;color:var(--muted);font-size:15px}
+.note i{flex:none;font-size:22px;color:var(--accent-ink)}
+
+/* diamond cut: photo + three ranges */
+.dc-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,96px);align-items:center}
+.dc-photo{aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius);background:var(--bg-2)}
+.dc-photo img{width:100%;height:100%;object-fit:cover}
+.ranges{margin-top:36px;border-top:1px solid var(--line)}
+.range{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.range b{font-stretch:125%;font-weight:800;font-size:clamp(22px,2.2vw,32px);text-transform:uppercase;letter-spacing:-.01em}
+.range .amount{flex:none;justify-content:flex-end;text-align:right}
+.range .amount .num{font-size:clamp(30px,3vw,46px)}
+.range .amount .vat-label{text-align:right}
+
+/* straightening: one yellow band */
+.pl-straight{background:var(--accent);color:var(--ink);padding:clamp(56px,7vw,104px) 0}
+.straight-grid{display:grid;grid-template-columns:1fr auto;gap:32px 64px;align-items:end}
+.pl-straight h2{font-size:clamp(34px,4.6vw,68px)}
+.pl-straight p{margin-top:16px;max-width:46ch;font-size:clamp(17px,1.35vw,19px);color:rgba(12,12,12,.75)}
+.pl-straight .amount .num{font-size:clamp(72px,10vw,150px)}
+.pl-straight .amount .unit{font-size:clamp(40px,5vw,72px)}
+.pl-straight .amount .vat-label{color:rgba(12,12,12,.7);font-size:15px}
+
+/* closing cta */
+.pl-cta{padding:clamp(64px,8vw,120px) 0}
+.pl-cta h2{font-size:clamp(40px,6vw,96px);max-width:14ch}
+.pl-cta p{margin-top:20px;max-width:48ch;color:var(--muted);font-size:clamp(17px,1.35vw,19px)}
+.pl-cta .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+/* fixed VAT switch */
+.vat-dock{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));z-index:40;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 20px;border-radius:999px;
+  background:rgba(12,12,12,.92);color:#f6f6f4;border:1px solid #2a2a2a;box-shadow:0 18px 48px rgba(0,0,0,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transform:translate(-50%,0);transition:transform .7s var(--ease),opacity .5s}
+.vat-dock.pre{transform:translate(-50%,140%);opacity:0}
+.vat-dock .lbl{font-size:14px;color:#a3a3a0;white-space:nowrap}
+.seg{position:relative;display:grid;grid-template-columns:1fr 1fr;border-radius:999px;background:#1d1d1d;padding:4px}
+.seg .thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:var(--accent);transition:transform .5s var(--ease)}
+.seg[data-mode="net"] .thumb{transform:translateX(100%)}
+.seg button{position:relative;z-index:1;border:0;background:transparent;font:inherit;font-weight:700;font-size:15px;color:#f6f6f4;padding:12px 22px;min-width:112px;border-radius:999px;cursor:pointer;transition:color .3s}
+.seg button[aria-checked="true"]{color:#0c0c0c}
+.seg button:focus-visible{outline:2px solid #f6f6f4;outline-offset:2px}
+
+/* number change: brief lift while the value counts */
+.num.tick{animation:tick .55s var(--ease)}
+@keyframes tick{0%{transform:translateY(0);opacity:1}30%{transform:translateY(-6px);opacity:.55}100%{transform:none;opacity:1}}
+.num{display:inline-block}
+.vat-label.swap{animation:fade .45s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+@media (max-width:1024px){.sizes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){
+  .dc-grid{grid-template-columns:1fr}
+  .dc-photo{aspect-ratio:4/3}
+  .straight-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .sizes{gap:8px}
+  .size-tile{min-height:170px;padding:18px}
+  .size-tile .ring{--d:calc((var(--r) - 12) * 12px)}
+  .size-tile .size{font-size:30px}
+  .size-tile .amount .num{font-size:32px}
+  .size-tile .amount .unit{font-size:20px}
+  .vat-dock{left:16px;right:16px;transform:none;justify-content:space-between}
+  .vat-dock.pre{transform:translateY(140%)}
+  .seg button{min-width:0;padding:11px 16px;font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-bar">
+    <a class="brand" href="index.html" aria-label="Car Spa, renovácia diskov"><img src="img/logo-carspa.png" alt="Car Spa" width="74" height="100"><span>Renovácia<br>diskov</span></a>
+    <nav class="menu" id="menu" aria-label="Hlavné menu">
+      <a href="index.html#renovacia">Renovácia</a>
+      <a href="cennik.html" aria-current="page">Cenník</a>
+      <a href="index.html#postup">Postup</a>
+      <a href="index.html#prace">Práce</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <a class="menu-detailing" href="https://car-spa.sk/" target="_blank" rel="noopener">Detailing áut<i class="ph ph-arrow-up-right"></i></a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost detailing" href="https://car-spa.sk/" target="_blank" rel="noopener">Detailing<i class="ph ph-arrow-up-right"></i></a>
+      <a class="btn btn-primary" href="index.html#kontakt"><i class="ph ph-camera"></i>Poslať fotky</a>
+    </div>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i class="ph ph-list"></i></button>
+  </div>
+</header>
+
+<main>
+
+<section class="pl-head">
+  <div class="wrap">
+    <h1 class="display rv">Cenník</h1>
+    <p class="lead rv" style="--d:1">Orientačné ceny za kompletnú renováciu. Presnú cenu potvrdíme podľa fotiek, vo väčšine prípadov sa nemení.</p>
+    <ul class="facts rv" style="--d:2">
+      <li><i class="ph ph-stack"></i>Ceny za sadu 4 diskov</li>
+      <li><i class="ph ph-truck"></i>Vyzdvihnutie v Bratislave a okolí</li>
+      <li><i class="ph ph-camera"></i>Presná cena podľa fotiek</li>
+    </ul>
+  </div>
+</section>
+
+<section class="pl-block" id="renovacia">
+  <div class="wrap">
+    <h2 class="display rv">Renovácia + lakovanie</h2>
+    <p class="desc rv">Odstránime pôvodnú farbu a lak, opravíme poškodený povrch a disky nalakujeme do pôvodnej farby alebo nového odtieňa.</p>
+    <div class="sizes">
+      <article class="size-tile rv"><span class="ring" style="--r:17"></span><span class="size">R17</span><div class="amount"><span class="num" data-vat="590" data-net="480">590</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></article>
+      <article class="size-tile rv" style="--d:1"><span class="ring" style="--r:18"></span><span class="size">R18</span><div class="amount"><span class="num" data-vat="615" data-net="500">615</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></article>
+      <article class="size-tile rv" style="--d:2"><span class="ring" style="--r:19"></span><span class="size">R19</span><div class="amount"><span class="num" data-vat="640" data-net="520">640</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></article>
+      <article class="size-tile rv"><span class="ring" style="--r:20"></span><span class="size">R20</span><div class="amount"><span class="num" data-vat="664" data-net="540">664</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></article>
+      <article class="size-tile rv" style="--d:1"><span class="ring" style="--r:21"></span><span class="size">R21</span><div class="amount"><span class="num" data-vat="689" data-net="560">689</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></article>
+      <article class="size-tile rv" style="--d:2"><span class="ring" style="--r:22"></span><span class="size">R22</span><div class="amount"><span class="num" data-vat="738" data-net="600">738</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></article>
+    </div>
+    <p class="note rv"><i class="ph ph-info"></i>Cena sa môže upraviť pri veľmi veľkom poškodení, keď treba disk zvárať. Vždy vám to povieme vopred. Vo väčšine prípadov sa cena za renováciu a lakovanie nemení.</p>
+  </div>
+</section>
+
+<section class="pl-block">
+  <div class="wrap dc-grid">
+    <div class="dc-photo rv"><img src="img/disk-4.jpg" alt="Disk s obrábaným čelom, čierne ramená a lesklý kov" loading="lazy"></div>
+    <div>
+      <h2 class="display rv">Renovácia + obrábané čelo</h2>
+      <p class="desc rv">Renovácia, lakovanie a diamond cut. Ramená sú nalakované a čelo disku obrobené do lesklého kovu, takže disk má dvojfarebný vzhľad.</p>
+      <div class="ranges rv">
+        <div class="range"><b>R18 a menšie</b><div class="amount"><span class="num" data-vat="800" data-net="650">800</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></div>
+        <div class="range"><b>R19 a R20</b><div class="amount"><span class="num" data-vat="861" data-net="700">861</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></div>
+        <div class="range"><b>R21 a väčšie</b><div class="amount"><span class="num" data-vat="923" data-net="750">923</span><span class="unit">€</span><span class="vat-label">za 4 ks s DPH</span></div></div>
+      </div>
+      <p class="note rv"><i class="ph ph-info"></i>Pri veľmi veľkom poškodení a potrebe zvárania sa cena môže upraviť, vždy po dohode vopred.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pl-straight">
+  <div class="wrap straight-grid">
+    <div>
+      <h2 class="display rv">Rovnanie disku</h2>
+      <p class="rv">Ak pri kontrole zistíme, že je disk krivý, dáme vám vedieť ešte pred začatím prác.</p>
+    </div>
+    <div class="amount rv"><span class="num" data-vat="49" data-net="40">49</span><span class="unit">€</span><span class="vat-label">za 1 disk s DPH</span></div>
+  </div>
+</section>
+
+<section class="pl-cta">
+  <div class="wrap">
+    <h2 class="display rv">Chcete presnú <em class="mark">cenu?</em></h2>
+    <p class="rv">Pošlite nám fotky celých diskov aj detailov poškodenia a priemer. Cenu potvrdíme a dohodneme termín aj vyzdvihnutie.</p>
+    <div class="ctas rv">
+      <a class="btn btn-primary" href="index.html#kontakt"><i class="ph ph-camera"></i>Poslať fotky</a>
+      <a class="btn btn-ghost" href="https://wa.me/421948333323"><i class="ph ph-whatsapp-logo"></i>WhatsApp 0948 333 323</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Renovácia a lakovanie diskov</span>
+    <div class="foot-links">
+      <a href="tel:+421948333323">0948 333 323</a>
+      <a href="mailto:carspaba@gmail.com">carspaba@gmail.com</a>
+      <span>Železničná 2579/128F, 900 41 Rovinka</span>
+      <a href="https://car-spa.sk/" target="_blank" rel="noopener">Detailing áut na car-spa.sk</a>
+    </div>
+    <span>© 2026 Car Spa</span>
+  </div>
+</footer>
+
+<div class="vat-dock pre" id="vat-dock">
+  <span class="lbl">Zobraziť ceny</span>
+  <div class="seg" id="seg" role="radiogroup" aria-label="Zobraziť ceny" data-mode="vat">
+    <span class="thumb" aria-hidden="true"></span>
+    <button type="button" role="radio" aria-checked="true" data-mode="vat">s DPH</button>
+    <button type="button" role="radio" aria-checked="false" tabindex="-1" data-mode="net">bez DPH</button>
+  </div>
+</div>
+
+<script>
+// VAT switch: counts every price to the new value, remembers the choice per visitor
+const seg=document.getElementById("seg"), dock=document.getElementById("vat-dock");
+const nums=[...document.querySelectorAll(".num[data-vat]")], labels=[...document.querySelectorAll(".vat-label")];
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ease=t=>1-Math.pow(1-t,3);
+
+function countTo(el,to){
+  const from=parseInt(el.textContent,10)||0;
+  if(reduce||from===to){el.textContent=to;return}
+  el.classList.remove("tick");void el.offsetWidth;el.classList.add("tick");
+  const t0=performance.now(),dur=600;
+  (function frame(now){const p=Math.min((now-t0)/dur,1);el.textContent=Math.round(from+(to-from)*ease(p));if(p<1)requestAnimationFrame(frame)})(t0);
+}
+function setMode(mode,animate=true){
+  seg.dataset.mode=mode;
+  seg.querySelectorAll("button").forEach(b=>{const on=b.dataset.mode===mode;b.setAttribute("aria-checked",on);b.tabIndex=on?0:-1});
+  nums.forEach(n=>{const v=+n.dataset[mode];animate?countTo(n,v):n.textContent=v});
+  const suffix=mode==="vat"?"s DPH":"bez DPH";
+  labels.forEach(l=>{l.textContent=l.textContent.replace(/(s DPH|bez DPH)$/,suffix);if(animate){l.classList.remove("swap");void l.offsetWidth;l.classList.add("swap")}});
+  try{localStorage.setItem("vat-mode",mode)}catch(e){}
+}
+seg.addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.dataset.mode!==seg.dataset.mode)setMode(b.dataset.mode)});
+seg.addEventListener("keydown",e=>{if(["ArrowLeft","ArrowRight"].includes(e.key)){e.preventDefault();const next=seg.dataset.mode==="vat"?"net":"vat";setMode(next);seg.querySelector(`[data-mode="${next}"]`).focus()}});
+let saved=null;try{saved=localStorage.getItem("vat-mode")}catch(e){}
+if(saved==="net")setMode("net",false);
+setTimeout(()=>dock.classList.remove("pre"),400);
+</script>
+<script src="js/site.js"></script>
+</body>
+</html>

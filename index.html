@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renovácia diskov | Car Spa</title>
+<meta name="description" content="Kompletná renovácia a lakovanie diskov od 590 € za 4 ks. Disky v Bratislave a okolí vyzdvihneme. Presnú cenu potvrdíme podľa fotiek.">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="preload" as="image" href="img/disk-1.jpg">
+<style>
+/* hero: one full-bleed blurred photo, text on top */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:min(calc(80dvh - 72px),760px);background:var(--ink);color:#f6f6f4}
+.hero-bg{position:absolute;inset:-40px;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:blur(6px);transform:scale(1.04)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to top,rgba(12,12,12,.9) 0%,rgba(12,12,12,.45) 45%,rgba(12,12,12,.15) 100%),linear-gradient(to right,rgba(12,12,12,.55),transparent 65%)}
+.hero .wrap{width:100%;transform:translateZ(0);padding-top:clamp(40px,4vw,56px);padding-bottom:clamp(48px,6vw,80px)}
+.hero-tag{display:inline-block;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.hero h1{margin-top:20px;font-size:clamp(46px,6.85vw,115px);line-height:1;max-width:11ch}
+.hero h1 em{color:var(--ink)}
+.hero p{margin-top:28px;max-width:46ch;font-size:clamp(18px,1.5vw,21px);color:rgba(246,246,244,.85)}
+.hero p strong{color:#f6f6f4;white-space:nowrap}
+.hero .pickup{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:clamp(16px,1.25vw,18px);color:rgba(246,246,244,.75)}
+.hero .pickup i{font-size:22px;color:var(--accent);flex:none;margin-top:1px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+@media (prefers-reduced-motion: no-preference){
+  .hero-bg img{animation:settle 1.6s var(--ease) both}
+  @keyframes settle{from{transform:scale(1.14)}to{transform:scale(1.04)}}
+}
+@media (max-width:860px){.hero{min-height:0;align-items:flex-start}.hero .wrap{padding-top:52px;padding-bottom:56px}.hero h1{margin-top:18px;line-height:1.02}.hero p{margin-top:24px;line-height:1.65}.hero .ctas{margin-top:32px}}
+
+/* renovation: one complete service */
+.reno{padding:clamp(64px,9vw,128px) 0;border-top:1px solid var(--line)}
+.reno-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,6vw,96px);align-items:start}
+.reno-photo{position:sticky;top:104px;aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius);background:var(--bg-2)}
+.reno-photo img{width:100%;height:100%;object-fit:cover}
+.reno h2{font-size:clamp(40px,5.4vw,84px)}
+.reno-text{margin-top:28px;max-width:56ch;color:var(--muted);font-size:clamp(17px,1.35vw,19px)}
+.reno-text strong{color:var(--text);font-weight:600}
+.prices{margin-top:40px;border-top:1px solid var(--line)}
+.price-row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.price-row b{display:block;font-size:19px;font-weight:700}
+.price-row small{display:block;margin-top:2px;color:var(--muted);font-size:15px}
+.price-row .val{flex:none;text-align:right;font-stretch:125%;font-weight:800;font-size:clamp(22px,2.2vw,30px);white-space:nowrap}
+.price-row .val span{display:block;font-stretch:100%;font-weight:400;font-size:13px;color:var(--muted)}
+.price-row.main .val{color:var(--accent-ink)}
+.reno-foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:32px}
+.reno-foot p{font-size:15px;color:var(--muted);max-width:40ch}
+@media (max-width:860px){.reno-grid{grid-template-columns:1fr}.reno-photo{position:static;aspect-ratio:4/3}}
+
+/* finishes slider */
+.finishes{padding:clamp(64px,8vw,112px) 0;background:var(--bg-2)}
+.finishes h2,.process h2,.gallery h2,.faq h2{font-size:clamp(32px,4.4vw,64px)}
+.finishes .lead{margin-top:18px;max-width:52ch;color:var(--muted)}
+.finishes-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.rail-nav{display:flex;gap:8px;flex:none}
+.rail-btn{display:grid;place-items:center;width:52px;height:52px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:22px;cursor:pointer;transition:background .2s,color .2s,border-color .2s,opacity .2s,transform .2s var(--ease)}
+.rail-btn:hover:not(:disabled){background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.rail-btn:active:not(:disabled){transform:scale(.96)}
+.rail-btn:disabled{opacity:.3;cursor:default}
+.rail{--cols:4;--gap:16px;display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));gap:var(--gap);
+  margin-top:40px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.rail::-webkit-scrollbar{display:none}
+.rail.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.rail figure{scroll-snap-align:start}
+.rail button{all:unset;display:block;width:100%;cursor:inherit;border-radius:var(--radius)}
+.rail button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+.rail .sw{aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius);background:var(--bg)}
+.rail img{width:100%;height:100%;object-fit:cover;transform:scale(1.35);transition:transform .8s var(--ease);pointer-events:none}
+.rail figure:hover img{transform:scale(1.18)}
+.rail figcaption{margin-top:14px;font-weight:700}
+.rail figcaption small{display:block;font-weight:400;color:var(--muted);font-size:14px}
+@media (max-width:1024px){.rail{--cols:3}}
+@media (max-width:700px){
+  .rail{--gap:12px;grid-auto-columns:68vw;margin:28px calc(var(--pad) * -1) 0;padding-inline:16vw}
+  .rail figure{scroll-snap-align:center}
+  .rail figure img{transform:scale(1.25)}
+  .finishes-head{flex-wrap:wrap}
+  .rail-btn{width:44px;height:44px;font-size:19px}
+}
+
+/* process */
+.process{padding:clamp(72px,10vw,144px) 0}
+.process-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,96px)}
+.process-intro{position:sticky;top:110px;align-self:start}
+.process-intro p{margin-top:20px;max-width:38ch;color:var(--muted)}
+.steps{list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:72px 1fr;gap:16px;padding:32px 0;border-top:1px solid var(--line)}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:52px;height:52px;border-radius:var(--radius);background:var(--accent);color:var(--on-accent);font-stretch:125%;font-weight:800;font-size:26px;line-height:1}
+.steps h3{font-size:22px;font-weight:700;font-stretch:110%}
+.steps p{margin-top:8px;color:var(--muted);max-width:52ch}
+.steps a{color:var(--text)}
+.checklist{margin-top:40px;padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2)}
+.checklist h3{font-size:18px;font-weight:700}
+.checklist ul{list-style:none;margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}
+.checklist li{display:flex;gap:10px;align-items:flex-start}
+.checklist li i{color:var(--accent-ink);font-size:20px;margin-top:2px}
+@media (max-width:860px){
+  .process-grid{grid-template-columns:1fr}
+  .process-intro{position:static}
+  .steps li{grid-template-columns:52px 1fr}
+  .steps li::before{width:40px;height:40px;font-size:20px}
+  .checklist ul{grid-template-columns:1fr}
+}
+
+/* gallery */
+.gallery{padding:clamp(64px,8vw,112px) 0;border-top:1px solid var(--line)}
+.gallery-head{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.masonry{margin-top:40px;columns:4 260px;column-gap:12px}
+.masonry button{all:unset;display:block;width:100%;margin-bottom:12px;break-inside:avoid;cursor:zoom-in;overflow:hidden;border-radius:var(--radius);position:relative}
+.masonry button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+.masonry img{width:100%;height:auto;transition:transform .7s var(--ease)}
+.masonry button:nth-child(3n+1) img{aspect-ratio:4/5;object-fit:cover}
+.masonry button:hover img{transform:scale(1.035)}
+@media (max-width:700px){.masonry{columns:2;column-gap:8px}.masonry button{margin-bottom:8px}}
+
+dialog.lb{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100vw;height:100dvh;color:#ececea}
+dialog.lb::backdrop{background:rgba(8,9,10,.94)}
+.lb-inner{position:relative;width:100%;height:100%;display:grid;place-items:center;padding:56px 16px}
+.lb img{max-width:min(92vw,1100px);max-height:calc(100dvh - 140px);object-fit:contain;border-radius:var(--radius)}
+.lb-cap{position:absolute;left:0;right:0;bottom:20px;text-align:center;font-size:15px;color:#b9bdc1}
+.lb-btn{position:absolute;display:grid;place-items:center;width:48px;height:48px;border-radius:999px;border:1px solid #3a3e42;background:#16181a;color:#ececea;cursor:pointer;font-size:22px}
+.lb-btn:hover{border-color:#ececea}
+.lb-close{top:16px;right:16px}
+.lb-prev{left:16px;top:50%;transform:translateY(-50%)}
+.lb-next{right:16px;top:50%;transform:translateY(-50%)}
+
+/* faq */
+.faq{padding:clamp(64px,8vw,112px) 0;border-top:1px solid var(--line)}
+.faq-grid{display:grid;grid-template-columns:4fr 8fr;gap:clamp(24px,6vw,96px)}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:24px 0;font-size:clamp(18px,1.6vw,21px);font-weight:600}
+summary::-webkit-details-marker{display:none}
+summary i{flex:none;font-size:22px;color:var(--muted);transition:transform .3s var(--ease)}
+details[open] summary i{transform:rotate(45deg);color:var(--accent-ink)}
+details p{padding:0 48px 26px 0;color:var(--muted);max-width:62ch}
+details p a{color:var(--text)}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr}}
+
+/* contact */
+.contact{padding:clamp(72px,10vw,144px) 0 clamp(48px,6vw,72px);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:7fr 5fr;gap:clamp(32px,6vw,96px);align-items:start}
+.contact h2{font-size:clamp(44px,7.2vw,116px);max-width:12ch}
+.contact-lead{margin-top:40px;max-width:48ch;color:var(--muted);font-size:clamp(17px,1.4vw,19px)}
+.contact-info{margin-top:36px;display:grid;grid-template-columns:repeat(3,minmax(0,max-content));gap:24px 48px}
+.contact-info dt{font-size:14px;color:var(--muted)}
+.contact-info dd{margin-top:4px;font-size:19px;font-weight:600}
+.contact-info dd a{text-decoration:none}
+.contact-info dd a:hover{text-decoration:underline}
+.channels{display:grid;gap:10px}
+.channel{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--radius);cursor:pointer;transition:border-color .2s,background .2s,transform .2s var(--ease)}
+.channel:hover{border-color:var(--text)}
+.channel:active{transform:translateY(1px)}
+.channel:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+.channel.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.channel.primary:hover{filter:brightness(1.08)}
+.channel span{display:flex;flex-direction:column}
+.channel b{font-size:18px;font-weight:700}
+.channel small{font-size:14px;opacity:.75}
+.channel i{font-size:24px;transition:transform .35s var(--ease)}
+.channel[aria-expanded="true"] i{transform:rotate(45deg)}
+@media (max-width:1100px){.contact-info{grid-template-columns:repeat(2,minmax(0,max-content))}}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}.contact-info{grid-template-columns:1fr}}
+
+/* inquiry form, revealed on demand */
+.form-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.form-wrap.open{grid-template-rows:1fr}
+.form-wrap > div{overflow:hidden;min-height:0}
+.inquiry{margin-top:clamp(40px,5vw,64px);padding:clamp(24px,3vw,40px);border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 24px}
+.inquiry h3{grid-column:1/-1;font-size:clamp(24px,2.4vw,32px)}
+.field{display:grid;gap:8px;align-content:start}
+.field.full{grid-column:1/-1}
+.field label,.field legend{font-size:14px;font-weight:600}
+.field small{font-size:13px;color:var(--muted)}
+.inquiry input,.inquiry select,.inquiry textarea{font:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;width:100%;transition:border-color .2s}
+.inquiry textarea{min-height:120px;resize:vertical}
+.inquiry input:focus,.inquiry select:focus,.inquiry textarea:focus{outline:none;border-color:var(--accent-ink);box-shadow:0 0 0 1px var(--accent-ink)}
+.inquiry input::placeholder,.inquiry textarea::placeholder{color:var(--muted)}
+fieldset.field{border:0;padding:0;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:999px;font-weight:500;font-size:15px;transition:background .2s,border-color .2s,color .2s}
+.chips input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chips input:focus-visible + span{outline:2px solid var(--accent-ink);outline-offset:2px}
+.upload{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.upload input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.thumbs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.thumbs:empty{display:none}
+.thumbs img{width:72px;height:72px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line)}
+.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:6px}
+.form-note{font-size:15px;color:var(--muted)}
+.form-note[hidden]{display:none}
+@media (max-width:700px){.inquiry{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-bar">
+    <a class="brand" href="index.html" aria-label="Car Spa, renovácia diskov"><img src="img/logo-carspa.png" alt="Car Spa" width="74" height="100"><span>Renovácia<br>diskov</span></a>
+    <nav class="menu" id="menu" aria-label="Hlavné menu">
+      <a href="#renovacia">Renovácia</a>
+      <a href="cennik.html">Cenník</a>
+      <a href="#postup">Postup</a>
+      <a href="#prace">Práce</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="menu-detailing" href="https://car-spa.sk/" target="_blank" rel="noopener">Detailing áut<i class="ph ph-arrow-up-right"></i></a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost detailing" href="https://car-spa.sk/" target="_blank" rel="noopener">Detailing<i class="ph ph-arrow-up-right"></i></a>
+      <a class="btn btn-primary" href="#kontakt"><i class="ph ph-camera"></i>Poslať fotky</a>
+    </div>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i class="ph ph-list"></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"><img src="img/disk-1.jpg" alt="" fetchpriority="high"></div>
+  <div class="wrap">
+    <span class="hero-tag rv">Renovácia a lakovanie diskov</span>
+    <h1 class="display rv" style="--d:1">Druhá šanca pre <em class="mark">vaše disky.</em></h1>
+    <p class="rv" style="--d:2">Kompletná renovácia s lakovaním <strong>od 590 € za 4 disky</strong>. Presnú cenu potvrdíme podľa fotiek.</p>
+    <p class="pickup rv" style="--d:2"><i class="ph ph-truck"></i>Disky v Bratislave a okolí si radi vyzdvihneme, aby sme vám ušetrili čas.</p>
+    <div class="ctas rv" style="--d:3">
+      <a class="btn btn-primary" href="cennik.html"><i class="ph ph-tag"></i>Pozrieť cenník</a>
+      <a class="btn btn-outline-light" href="#kontakt">Poslať fotky</a>
+    </div>
+  </div>
+</section>
+
+<section class="reno" id="renovacia">
+  <div class="wrap reno-grid">
+    <div class="reno-photo rv"><img src="img/disk-9.jpg" alt="Disk po kompletnej renovácii, lesklá čierna s obrábanými ramenami" loading="lazy"></div>
+    <div>
+      <h2 class="display rv">Kompletná renovácia</h2>
+      <p class="reno-text rv">Škrabance od obrubníka, korózia či odlupujúci sa lak? Odstránime pôvodnú farbu a lak, opravíme poškodený povrch a disky profesionálne nalakujeme do <strong>pôvodnej farby alebo nového odtieňa</strong> podľa vášho výberu. Lesk, mat, bronz, antracit alebo iné farby, aj v kombinácii s obrábaným čelom či leštenou hranou.</p>
+      <div class="prices rv">
+        <div class="price-row main"><div><b>Renovácia + lakovanie</b><small>R17 až R22, podľa priemeru</small></div><div class="val">od 590 €<span>za 4 ks s DPH</span></div></div>
+        <div class="price-row"><div><b>S obrábaným čelom</b><small>diamond cut, dvojfarebný vzhľad</small></div><div class="val">od 800 €<span>za 4 ks s DPH</span></div></div>
+        <div class="price-row"><div><b>Rovnanie disku</b><small>ak je disk ohnutý</small></div><div class="val">49 €<span>za 1 ks s DPH</span></div></div>
+      </div>
+      <div class="reno-foot rv">
+        <a class="btn btn-ghost" href="cennik.html">Celý cenník<i class="ph ph-arrow-right"></i></a>
+        <p>Vo väčšine prípadov platí cena z cenníka. Zváranie pri veľkom poškodení vždy dohodneme vopred.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="finishes">
+  <div class="wrap">
+    <div class="finishes-head">
+      <div>
+        <h2 class="display rv">Vyberte si povrch</h2>
+        <p class="lead rv">Vašu predstavu prejdeme spolu a odporučíme odtieň aj povrchovú úpravu, ktoré k autu sadnú.</p>
+      </div>
+      <div class="rail-nav rv">
+        <button class="rail-btn" id="rail-prev" aria-label="Predchádzajúce povrchy"><i class="ph ph-arrow-left"></i></button>
+        <button class="rail-btn" id="rail-next" aria-label="Ďalšie povrchy"><i class="ph ph-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="rail" id="rail" tabindex="0" aria-label="Povrchové úpravy">
+      <figure><button data-photo="6" aria-label="Zväčšiť: Lesklá čierna"><div class="sw"><img src="img/disk-6.jpg" alt="Lesklá čierna" loading="lazy"></div></button><figcaption>Lesklá čierna<small>hlboký lesk, zrkadlí okolie</small></figcaption></figure>
+      <figure><button data-photo="12" aria-label="Zväčšiť: Matná čierna"><div class="sw"><img src="img/disk-12.jpg" alt="Matná čierna" loading="lazy"></div></button><figcaption>Matná čierna<small>tlmená, bez odleskov</small></figcaption></figure>
+      <figure><button data-photo="11" aria-label="Zväčšiť: Bronz"><div class="sw"><img src="img/disk-11.jpg" alt="Matný bronz" loading="lazy"></div></button><figcaption>Bronz<small>matný, teplý odtieň</small></figcaption></figure>
+      <figure><button data-photo="13" aria-label="Zväčšiť: Antracit s obrábaným čelom"><div class="sw"><img src="img/disk-13.jpg" alt="Antracit s obrábaným čelom" loading="lazy"></div></button><figcaption>Antracit + obrábané čelo<small>dvojfarebný efekt</small></figcaption></figure>
+      <figure><button data-photo="2" aria-label="Zväčšiť: Leštená hrana"><div class="sw"><img src="img/disk-2.jpg" alt="Lesklá čierna s leštenou hranou" loading="lazy"></div></button><figcaption>Leštená hrana<small>kontrastný lem okolo disku</small></figcaption></figure>
+      <figure><button data-photo="15" aria-label="Zväčšiť: Mat a lesk"><div class="sw"><img src="img/disk-15.jpg" alt="Kombinácia matného a lesklého laku" loading="lazy"></div></button><figcaption>Mat + lesk<small>kombinácia na jednom disku</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="postup">
+  <div class="wrap process-grid">
+    <div class="process-intro">
+      <h2 class="display rv">Cena bez prekvapení</h2>
+      <p class="rv">Orientačnú cenu nájdete v cenníku. Podľa fotiek ju potvrdíme a ak by bolo treba niečo navyše, povieme vám to ešte pred začatím prác.</p>
+    </div>
+    <div>
+      <ol class="steps">
+        <li class="rv"><div><h3>Pozrite si cenník</h3><p>Cena za sadu 4 diskov závisí od priemeru. Nájdete ju v <a href="cennik.html">cenníku</a>.</p></div></li>
+        <li class="rv"><div><h3>Pošlite nám fotografie</h3><p>Odfoťte celé disky aj detaily poškodenia a pridajte priemer. Podľa fotiek potvrdíme presnú cenu.</p></div></li>
+        <li class="rv"><div><h3>Dohodneme termín a odovzdanie</h3><p>Vyberieme farbu a povrch. Disky v Bratislave a okolí si radi vyzdvihneme.</p></div></li>
+        <li class="rv"><div><h3>Disky zrenovujeme</h3><p>Po dokončení sa vám ozveme a dohodneme vrátenie diskov.</p></div></li>
+      </ol>
+      <div class="checklist rv">
+        <h3>Čo poslať pre presnú cenu</h3>
+        <ul>
+          <li><i class="ph ph-image-square"></i>Fotku celého disku spredu</li>
+          <li><i class="ph ph-magnifying-glass-plus"></i>Detail každého poškodenia</li>
+          <li><i class="ph ph-ruler"></i>Priemer disku, napríklad R19</li>
+          <li><i class="ph ph-palette"></i>Požadovanú farbu alebo povrch</li>
+          <li><i class="ph ph-warning-circle"></i>Či je disk ohnutý alebo hádže</li>
+          <li><i class="ph ph-truck"></i>Či chcete disky vyzdvihnúť</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="prace">
+  <div class="wrap">
+    <div class="gallery-head">
+      <h2 class="display rv">Naše práce</h2>
+      <p class="muted rv">Kliknite na fotku pre zväčšenie.</p>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<section class="faq" id="otazky">
+  <div class="wrap faq-grid">
+    <h2 class="display rv">Časté otázky</h2>
+    <div class="rv">
+      <details open>
+        <summary>Koľko stojí renovácia diskov?<i class="ph ph-plus"></i></summary>
+        <p>Kompletná renovácia s lakovaním stojí od 590 € s DPH za sadu 4 diskov, podľa priemeru. Všetky ceny nájdete v <a href="cennik.html">cenníku</a>.</p>
+      </details>
+      <details>
+        <summary>Môže sa cena z cenníka zmeniť?<i class="ph ph-plus"></i></summary>
+        <p>Vo väčšine prípadov nie. Upraviť sa môže len pri veľmi veľkom poškodení, keď treba disk zvárať, a vždy vám to povieme vopred.</p>
+      </details>
+      <details>
+        <summary>Prečo posielať fotky?<i class="ph ph-plus"></i></summary>
+        <p>Podľa fotiek potvrdíme presnú cenu a uvidíme, či disky nepotrebujú zváranie alebo rovnanie. Pošlite celé disky aj detaily poškodenia.</p>
+      </details>
+      <details>
+        <summary>Vyzdvihnete disky?<i class="ph ph-plus"></i></summary>
+        <p>Áno. Disky v Bratislave a okolí si radi vyzdvihneme, aby sme vám ušetrili čas.</p>
+      </details>
+      <details>
+        <summary>Môžem si vybrať inú farbu?<i class="ph ph-plus"></i></summary>
+        <p>Áno. Lesk, mat, bronz, antracit alebo iné farby, aj v kombinácii s obrábaným čelom či leštenou hranou. Predstavu prejdeme spolu.</p>
+      </details>
+      <details>
+        <summary>Ako dlho trvá realizácia?<i class="ph ph-plus"></i></summary>
+        <p>Termín závisí od rozsahu prác a aktuálnej vyťaženosti. Dohodneme ho pri objednávke.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <h2 class="display rv">Začnime <em class="mark">fotkou.</em></h2>
+        <p class="contact-lead rv">Pošlite nám fotky diskov a ich priemer. Potvrdíme cenu z cenníka a dohodneme termín aj vyzdvihnutie diskov.</p>
+        <dl class="contact-info rv">
+          <div><dt>Telefón a WhatsApp</dt><dd><a href="tel:+421948333323">0948 333 323</a></dd></div>
+          <div><dt>E-mail</dt><dd><a href="mailto:carspaba@gmail.com">carspaba@gmail.com</a></dd></div>
+          <div><dt>Adresa dielne</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=%C5%BDelezni%C4%8Dn%C3%A1+2579%2F128F%2C+900+41+Rovinka" target="_blank" rel="noopener">Železničná 2579/128F<br>900 41 Rovinka</a></dd></div>
+        </dl>
+      </div>
+      <div class="channels rv" style="--d:1">
+        <button class="channel primary" type="button" id="form-toggle" aria-expanded="false" aria-controls="form-wrap"><span><b>Vyplniť formulár</b><small>Dopyt s fotkami</small></span><i class="ph ph-plus"></i></button>
+        <a class="channel" href="https://wa.me/421948333323"><span><b>Poslať fotky</b><small>WhatsApp</small></span><i class="ph ph-whatsapp-logo"></i></a>
+        <a class="channel" href="tel:+421948333323"><span><b>Zavolať</b><small>0948 333 323</small></span><i class="ph ph-phone"></i></a>
+        <a class="channel" href="mailto:carspaba@gmail.com"><span><b>Napísať e-mail</b><small>carspaba@gmail.com</small></span><i class="ph ph-envelope-simple"></i></a>
+      </div>
+    </div>
+
+    <div class="form-wrap" id="form-wrap">
+      <div>
+        <!-- TODO: formulár zatiaľ nie je napojený na odosielanie -->
+        <form class="inquiry" id="inquiry" novalidate inert>
+          <h3 class="display">Dopyt na renováciu</h3>
+          <div class="field"><label for="f-name">Meno</label><input id="f-name" name="name" autocomplete="name" placeholder="Ján Novák"></div>
+          <div class="field"><label for="f-phone">Telefón</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="09xx xxx xxx"></div>
+          <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="meno@email.sk"></div>
+          <div class="field"><label for="f-size">Priemer diskov</label>
+            <select id="f-size" name="size">
+              <option value="">Vyberte priemer</option>
+              <option>R17</option><option>R18</option><option>R19</option><option>R20</option><option>R21</option><option>R22</option>
+              <option>Iný alebo neviem</option>
+            </select>
+          </div>
+          <fieldset class="field full">
+            <legend>Čo potrebujete</legend>
+            <div class="chips">
+              <label><input type="checkbox" name="service" value="renovacia" checked><span>Renovácia + lakovanie</span></label>
+              <label><input type="checkbox" name="service" value="diamond-cut"><span>Obrábané čelo</span></label>
+              <label><input type="checkbox" name="service" value="rovnanie"><span>Rovnanie</span></label>
+              <label><input type="checkbox" name="service" value="vyzdvihnutie"><span>Vyzdvihnutie diskov</span></label>
+            </div>
+          </fieldset>
+          <div class="field full"><label for="f-msg">Popis</label><textarea id="f-msg" name="message" placeholder="Čo je s diskami a akú farbu alebo povrch si predstavujete"></textarea></div>
+          <div class="field full">
+            <label for="f-photos">Fotky diskov</label>
+            <div class="upload">
+              <input id="f-photos" name="photos" type="file" accept="image/*" multiple>
+              <label for="f-photos" class="btn btn-ghost"><i class="ph ph-image-square"></i>Pridať fotky</label>
+              <small id="photo-count">Celý disk aj detaily poškodenia</small>
+            </div>
+          </div>
+          <div class="thumbs" id="thumbs"></div>
+          <div class="form-foot">
+            <button class="btn btn-primary" type="submit">Odoslať dopyt</button>
+            <p class="form-note" id="form-note" role="status" hidden>Formulár zatiaľ nie je prepojený. Pošlite nám prosím fotky cez WhatsApp na 0948 333 323.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Renovácia a lakovanie diskov</span>
+    <div class="foot-links">
+      <a href="tel:+421948333323">0948 333 323</a>
+      <a href="mailto:carspaba@gmail.com">carspaba@gmail.com</a>
+      <span>Železničná 2579/128F, 900 41 Rovinka</span>
+      <a href="https://car-spa.sk/" target="_blank" rel="noopener">Detailing áut na car-spa.sk</a>
+    </div>
+    <span>© 2026 Car Spa</span>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Galéria">
+  <div class="lb-inner">
+    <img id="lb-img" alt="">
+    <p class="lb-cap" id="lb-cap"></p>
+    <button class="lb-btn lb-close" id="lb-close" aria-label="Zavrieť"><i class="ph ph-x"></i></button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="Predchádzajúca"><i class="ph ph-arrow-left"></i></button>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="Ďalšia"><i class="ph ph-arrow-right"></i></button>
+  </div>
+</dialog>
+
+<script>
+const photos = [
+  [4,"Čierny disk s obrábaným čelom"],
+  [6,"Lesklá čierna, viacramenný disk"],
+  [11,"Matný bronz"],
+  [1,"Lesklá čierna s leštenou hranou"],
+  [13,"Antracit s obrábaným čelom"],
+  [8,"Matný bronz, ľahký disk"],
+  [9,"Lesklá čierna s obrábanými ramenami"],
+  [12,"Matná čierna"],
+  [5,"Lesklá čierna, dvojité ramená"],
+  [10,"Matný bronz, päť ramien"],
+  [7,"Matná čierna s leštenou hranou"],
+  [15,"Kombinácia matného a lesklého laku"],
+  [3,"Čierny disk s obrábaným čelom, spredu"],
+  [14,"Matná čierna, detail"],
+  [2,"Detail lesklého laku"]
+];
+const m = document.getElementById("masonry");
+photos.forEach(([n,cap],i)=>{
+  const b=document.createElement("button");
+  b.className="rv"; b.style.setProperty("--d", i%4);
+  b.setAttribute("aria-label","Zväčšiť: "+cap);
+  b.innerHTML=`<img src="img/disk-${n}.jpg" alt="${cap}" loading="lazy" width="1400" height="1400">`;
+  b.onclick=()=>openLb(i);
+  m.appendChild(b);
+});
+
+// lightbox
+const lb=document.getElementById("lb"), li=document.getElementById("lb-img"), lc=document.getElementById("lb-cap");
+let cur=0;
+function show(i){cur=(i+photos.length)%photos.length;const[n,c]=photos[cur];li.src=`img/disk-${n}.jpg`;li.alt=c;lc.textContent=c;}
+function openLb(i){show(i);lb.showModal();}
+document.getElementById("lb-close").onclick=()=>lb.close();
+document.getElementById("lb-prev").onclick=()=>show(cur-1);
+document.getElementById("lb-next").onclick=()=>show(cur+1);
+lb.addEventListener("click",e=>{if(e.target.classList.contains("lb-inner"))lb.close();});
+lb.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")show(cur-1);if(e.key==="ArrowRight")show(cur+1);});
+
+// finishes slider: arrows page by visible width, mouse drag, keyboard, click opens lightbox
+const rail=document.getElementById("rail"), rp=document.getElementById("rail-prev"), rn=document.getElementById("rail-next");
+const tileStep=()=>rail.querySelector("figure").offsetWidth+parseFloat(getComputedStyle(rail).columnGap||0);
+const isCentered=()=>matchMedia("(max-width:700px)").matches;
+const step=()=>isCentered()?tileStep():rail.clientWidth+parseFloat(getComputedStyle(rail).columnGap||0);
+function railState(){const max=rail.scrollWidth-rail.clientWidth-2;rp.disabled=rail.scrollLeft<=2;rn.disabled=rail.scrollLeft>=max;}
+// on mobile start centred on the second tile, so a photo peeks in on both sides
+function centerSecond(){if(!isCentered())return;const f=rail.querySelectorAll("figure")[1];
+  rail.style.scrollBehavior="auto";rail.scrollLeft+=f.getBoundingClientRect().left-rail.getBoundingClientRect().left-(rail.clientWidth-f.offsetWidth)/2;rail.style.scrollBehavior="";railState();}
+centerSecond();addEventListener("load",centerSecond);document.fonts&&document.fonts.ready.then(centerSecond);
+matchMedia("(max-width:700px)").addEventListener("change",centerSecond);
+rp.onclick=()=>rail.scrollBy({left:-step()});
+rn.onclick=()=>rail.scrollBy({left:step()});
+let raf=0;rail.addEventListener("scroll",()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(railState)},{passive:true});
+addEventListener("resize",railState);railState();
+rail.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();rn.click()}if(e.key==="ArrowLeft"){e.preventDefault();rp.click()}});
+let drag=null;
+rail.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse")return;drag={x:e.clientX,left:rail.scrollLeft,moved:false};});
+addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x;if(Math.abs(dx)>4){drag.moved=true;rail.classList.add("dragging")}if(drag.moved)rail.scrollLeft=drag.left-dx;});
+addEventListener("pointerup",()=>{if(!drag)return;const moved=drag.moved;drag=null;
+  if(moved){const w=tileStep();const target=Math.round(rail.scrollLeft/w)*w;rail.classList.remove("dragging");rail.scrollTo({left:target});rail.dataset.justDragged="1";setTimeout(()=>delete rail.dataset.justDragged,50);}});
+rail.querySelectorAll("button[data-photo]").forEach(b=>b.addEventListener("click",e=>{
+  if(rail.dataset.justDragged){e.preventDefault();return}
+  const i=photos.findIndex(([n])=>n==b.dataset.photo);if(i>-1)openLb(i);}));
+
+// inquiry form: opens on demand, photo previews, submit not wired yet
+const ft=document.getElementById("form-toggle"), fw=document.getElementById("form-wrap"), form=document.getElementById("inquiry");
+ft.addEventListener("click",()=>{const open=ft.getAttribute("aria-expanded")!=="true";
+  ft.setAttribute("aria-expanded",open);fw.classList.toggle("open",open);form.inert=!open;
+  if(open)setTimeout(()=>{fw.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});document.getElementById("f-name").focus({preventScroll:true})},350);});
+const fp=document.getElementById("f-photos"), th=document.getElementById("thumbs"), pc=document.getElementById("photo-count");
+fp.addEventListener("change",()=>{th.innerHTML="";[...fp.files].forEach(f=>{const i=new Image();i.src=URL.createObjectURL(f);i.alt=f.name;th.appendChild(i)});
+  const n=fp.files.length;pc.textContent=n?`Vybraté fotky: ${n}`:"Celý disk aj detaily poškodenia";});
+form.addEventListener("submit",e=>{e.preventDefault();document.getElementById("form-note").hidden=false;});
+</script>
+<script src="js/site.js"></script>
+</body>
+</html>
